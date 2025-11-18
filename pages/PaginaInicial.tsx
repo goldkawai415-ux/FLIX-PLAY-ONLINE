@@ -32,8 +32,9 @@ const PaginaInicial: React.FC = () => {
         setFilmes(resFilmes.dados || []);
         setCanais(resCanais.dados || []);
       }
-    } catch (e) {
-      setErro("ERRO CRÍTICO: Falha inesperada na aplicação.");
+    } catch (e: any) {
+      console.error("Erro na Home:", e);
+      setErro(e.message || "ERRO CRÍTICO: Falha inesperada na aplicação.");
     } finally {
       setLoading(false);
     }
@@ -63,7 +64,7 @@ const PaginaInicial: React.FC = () => {
             </div>
             <h2 className="text-3xl font-bold text-red-500 mb-4 uppercase tracking-tight">Erro de Conexão</h2>
             <div className="bg-black/40 rounded-lg p-4 mb-8 inline-block border border-red-900/30">
-                <p className="text-red-200 font-mono text-base">
+                <p className="text-red-200 font-mono text-base break-words">
                 {erro}
                 </p>
             </div>
@@ -76,7 +77,7 @@ const PaginaInicial: React.FC = () => {
             </button>
           </div>
         ) : (
-          <div className="space-y-16">
+          <div className="space-y-16 animate-fade-in">
              {/* Seção de Canais TV */}
             <section id="canais">
               <div className="flex items-center gap-3 mb-6">
@@ -121,7 +122,7 @@ const PaginaInicial: React.FC = () => {
             </p>
 
             {/* Badge Tecnológico Chamativo */}
-            <div className="mb-12 flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in">
+            <div className="mb-12 flex flex-col sm:flex-row justify-center items-center gap-4">
                 <span className="text-gray-500 text-xs uppercase tracking-widest font-bold">Arquitetura de Alta Performance</span>
                 <div className="group relative inline-flex items-center gap-3 bg-gray-900/80 border border-gray-800 backdrop-blur-md px-6 py-3 rounded-full shadow-2xl hover:border-red-500/30 transition-all duration-500 hover:shadow-[0_0_20px_rgba(220,38,38,0.1)]">
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-500/10 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
