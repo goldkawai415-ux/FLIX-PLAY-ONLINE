@@ -5,7 +5,7 @@ import ListaCanais from '../components/ListaCanais';
 import { buscarFilmes } from '../services/filmeService';
 import { buscarCanais } from '../services/canalService';
 import { InterfaceFilme, InterfaceCanal } from '../types';
-import { AlertTriangle, WifiOff, Heart } from 'lucide-react';
+import { AlertTriangle, WifiOff, Heart, Zap, Server } from 'lucide-react';
 
 const PaginaInicial: React.FC = () => {
   const [filmes, setFilmes] = useState<InterfaceFilme[]>([]);
@@ -44,10 +44,10 @@ const PaginaInicial: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white font-sans selection:bg-red-500 selection:text-white">
+    <div className="min-h-screen bg-gray-900 text-white font-sans selection:bg-red-500 selection:text-white flex flex-col">
       <Navbar />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
         
         {loading ? (
           <div className="flex flex-col justify-center items-center h-[60vh]">
@@ -80,8 +80,8 @@ const PaginaInicial: React.FC = () => {
              {/* Seção de Canais TV */}
             <section id="canais">
               <div className="flex items-center gap-3 mb-6">
-                <div className="h-8 w-1 bg-red-600 rounded-full"></div>
-                <h2 className="text-2xl font-bold text-white">Canais Ao Vivo</h2>
+                <div className="h-8 w-1 bg-gradient-to-b from-red-500 to-red-800 rounded-full"></div>
+                <h2 className="text-2xl font-bold text-white tracking-tight">Canais Ao Vivo</h2>
               </div>
               <ListaCanais canais={canais} />
             </section>
@@ -89,8 +89,8 @@ const PaginaInicial: React.FC = () => {
             {/* Seção de Filmes */}
             <section id="filmes">
               <div className="flex items-center gap-3 mb-6">
-                <div className="h-8 w-1 bg-red-600 rounded-full"></div>
-                <h2 className="text-2xl font-bold text-white">Filmes Recentes</h2>
+                <div className="h-8 w-1 bg-gradient-to-b from-red-500 to-red-800 rounded-full"></div>
+                <h2 className="text-2xl font-bold text-white tracking-tight">Filmes Recentes</h2>
               </div>
               <ListaFilmes filmes={filmes} />
             </section>
@@ -98,22 +98,58 @@ const PaginaInicial: React.FC = () => {
         )}
       </main>
       
-      <footer className="mt-20 border-t border-gray-800 bg-gray-950 py-12 text-center">
-        <div className="mb-6 flex justify-center">
-            <div className="bg-red-600/10 p-3 rounded-full">
-                <Heart className="text-red-600 animate-pulse" size={24} />
+      {/* Footer Moderno e Convidativo */}
+      <footer className="mt-24 border-t border-gray-800 bg-[#0a0a0a] relative overflow-hidden">
+        {/* Efeito de brilho superior */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-red-600/50 to-transparent"></div>
+        
+        <div className="max-w-7xl mx-auto px-6 py-16 text-center relative z-10">
+            {/* Logo e Ícone */}
+            <div className="mb-8 flex justify-center">
+                <div className="bg-gradient-to-br from-red-900/20 to-black p-4 rounded-full ring-1 ring-red-500/20 shadow-[0_0_30px_rgba(220,38,38,0.15)]">
+                    <Heart className="text-red-600 animate-pulse fill-red-600/20" size={32} />
+                </div>
+            </div>
+
+            <h3 className="text-3xl font-extrabold text-white mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500">
+                Flix Play-Online
+            </h3>
+            
+            <p className="text-gray-400 text-base max-w-2xl mx-auto mb-10 leading-relaxed">
+                Sua central definitiva de entretenimento. Experimente o futuro do streaming com performance inigualável, 
+                catálogo atualizado e a melhor experiência visual da web.
+            </p>
+
+            {/* Badge Tecnológico Chamativo */}
+            <div className="mb-12 flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in">
+                <span className="text-gray-500 text-xs uppercase tracking-widest font-bold">Arquitetura de Alta Performance</span>
+                <div className="group relative inline-flex items-center gap-3 bg-gray-900/80 border border-gray-800 backdrop-blur-md px-6 py-3 rounded-full shadow-2xl hover:border-red-500/30 transition-all duration-500 hover:shadow-[0_0_20px_rgba(220,38,38,0.1)]">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-500/10 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="flex items-center gap-2">
+                        <Zap className="w-4 h-4 text-green-400" />
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-300 to-emerald-500 font-bold">
+                            Neon DB Serverless
+                        </span>
+                    </div>
+                    
+                    <span className="text-gray-600 font-light text-lg">|</span>
+                    
+                    <div className="flex items-center gap-2">
+                        <Server className="w-4 h-4 text-white" />
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 font-bold">
+                            Next.js Architecture
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div className="text-gray-600 text-xs font-medium flex items-center justify-center gap-2">
+                <span>&copy; 2024 Flix Play-Online.</span>
+                <span className="w-1 h-1 bg-gray-700 rounded-full"></span>
+                <span>Todos os direitos reservados.</span>
             </div>
         </div>
-        <h3 className="text-xl font-medium text-white mb-2">
-            Mergulhe no universo do entretenimento sem limites.
-        </h3>
-        <p className="text-gray-400 text-sm max-w-2xl mx-auto mb-8 leading-relaxed">
-            Trazemos o cinema e a TV diretamente para sua tela, com a qualidade que você merece. 
-            Prepare a pipoca e deixe a magia acontecer.
-        </p>
-        <p className="text-gray-600 text-xs uppercase tracking-widest font-bold">
-            &copy; 2024 Flix Play-Online. Todos os direitos reservados.
-        </p>
       </footer>
     </div>
   );
