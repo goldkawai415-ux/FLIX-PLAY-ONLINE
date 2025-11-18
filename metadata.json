@@ -1,0 +1,5 @@
+{
+  "name": "Flix Play-Online",
+  "description": "Plataforma de streaming de filmes e canais ao vivo com painel administrativo. Desenvolvido em React e TypeScript com integração Neon DB.",
+  "requestFramePermissions": []
+}
